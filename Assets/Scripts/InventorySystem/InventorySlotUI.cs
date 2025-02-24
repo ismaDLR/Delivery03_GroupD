@@ -16,7 +16,7 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Canvas _canvas;
     private GraphicRaycaster _raycaster;
     private Transform _parent;
-    private ItemSlot _slot;
+    public ItemSlot _slot;
     private ItemBase _item;
     private InventoryUI _inventory;
 
@@ -32,6 +32,7 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         _item = slot.Item;
         _inventory = inventory;
 
+        slot.Selected = false;
         Selected.gameObject.SetActive(slot.Selected);
     }
 
@@ -48,8 +49,16 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             }
             else
             {
-                Selected.gameObject.SetActive(false);
-                _slot.UnSelectedItem();
+                if (hitData.collider.tag == "Sell" && _slot.Selected)
+                {
+                    _inventory.Inventory.RemoveItem(_slot.Item);
+                    Debug.Log(_slot.Item.Cost);
+                }
+                else
+                {
+                    Selected.gameObject.SetActive(false);
+                    _slot.UnSelectedItem();
+                }
             }
             
         }

@@ -141,6 +141,10 @@ MonoBehaviour:
   Image: {fileID: 5942939155442774167}
   AmountText: {fileID: 4894285389737324033}
   Selected: {fileID: 7145700757397423856}
+  _slot:
+    Item: {fileID: 0}
+    Amount: 0
+    Selected: 0
 --- !u!114 &6004142133801907285
 MonoBehaviour:
   m_ObjectHideFlags: 0

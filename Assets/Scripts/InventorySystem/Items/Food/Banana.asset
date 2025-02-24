@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1daf7502f8cf791499949d5c683c46f2, type: 3}
-  m_Name: Potion
+  m_Script: {fileID: 11500000, guid: 48df1477fb7d2c74b8866634d4af22f1, type: 3}
+  m_Name: Banana
   m_EditorClassIdentifier: 
-  Name: Pocion
-  ImageUI: {fileID: 8194727248027911059, guid: 829cf6f9cc636ac4ca639a1278130d55, type: 3}
+  Name: Platano
+  ImageUI: {fileID: 1936781848245295189, guid: 829cf6f9cc636ac4ca639a1278130d55, type: 3}
   IsStackable: 1
-  Cost: 20
-  LifeRestore: 20
+  Cost: 10
+  LifeRestore: 5

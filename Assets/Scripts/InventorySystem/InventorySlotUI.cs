@@ -17,6 +17,7 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     private Transform _parent;
     private ItemBase _item;
     private InventoryUI _inventory;
+    private bool isSelected;
 
     public void Initialize(ItemSlot slot, InventoryUI inventory)
     {
@@ -32,11 +33,12 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnClickItem()
     {
-        Debug.Log("has hecho click");
+        Debug.Log("click");
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        isSelected = true;
         _parent = transform.parent;
 
         // Start moving object from the beginning!

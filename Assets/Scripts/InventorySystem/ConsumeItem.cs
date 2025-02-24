@@ -10,5 +10,10 @@ public class ConsumeItem : MonoBehaviour, IConsume
         {
             Debug.Log("Health potion consumed!");
         }
+
+        if (item is ItemFood)
+        {
+            Debug.Log("Food consumed!");
+        }
     }
 }

@@ -30,6 +30,11 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         _inventory = inventory;
     }
 
+    public void OnClickItem()
+    {
+        Debug.Log("has hecho click");
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         _parent = transform.parent;

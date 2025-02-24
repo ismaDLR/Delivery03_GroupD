@@ -8,6 +8,7 @@ public class ItemSlot
 {
     public ItemBase Item;
     public int Amount;
+    public bool Selected;
 
     public ItemSlot(ItemBase item)
     {
@@ -35,6 +36,16 @@ public class ItemSlot
     internal void RemoveOne()
     {
         Amount--;
+    }
+
+    internal void SelectedItem()
+    {
+        Selected = true;
+    }
+
+    internal void UnSelectedItem()
+    {
+        Selected = false;
     }
 
     public bool IsEmpty()

@@ -11,13 +11,14 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public Image Image;
     public TextMeshProUGUI AmountText;
+    public Image Selected;
 
     private Canvas _canvas;
     private GraphicRaycaster _raycaster;
     private Transform _parent;
+    private ItemSlot _slot;
     private ItemBase _item;
     private InventoryUI _inventory;
-    private bool isSelected;
 
     public void Initialize(ItemSlot slot, InventoryUI inventory)
     {
@@ -27,18 +28,40 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         AmountText.text = slot.Amount.ToString();
         AmountText.enabled = slot.Amount > 1;
 
+        _slot = slot;
         _item = slot.Item;
         _inventory = inventory;
+
+        Selected.gameObject.SetActive(slot.Selected);
     }
 
     public void OnClickItem()
     {
-        Debug.Log("click");
+        RaycastHit2D hitData = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
+
+        if (hitData)
+        {
+            if (hitData.collider.gameObject == gameObject)
+            {
+                Selected.gameObject.SetActive(true);
+                _slot.SelectedItem();
+            }
+            else
+            {
+                Selected.gameObject.SetActive(false);
+                _slot.UnSelectedItem();
+            }
+            
+        }
+        else
+        {
+            Selected.gameObject.SetActive(false);
+            _slot.UnSelectedItem();
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        isSelected = true;
         _parent = transform.parent;
 
         // Start moving object from the beginning!
@@ -72,7 +95,7 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (hitData)
         {
             Debug.Log("Drop over object: " + hitData.collider.gameObject.name);
-
+            /*
             var consumer = hitData.collider.GetComponent<IConsume>();
             bool consumable = _item is ConsumableItem;
 
@@ -81,6 +104,7 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 (_item as ConsumableItem).Use(consumer);
                 _inventory.UseItem(_item);
             }
+            */
         }
 
         // Changing parent back to slot

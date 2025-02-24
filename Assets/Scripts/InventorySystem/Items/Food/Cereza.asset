@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 099c98499d931a342947a9c1e351a1a9, type: 3}
-  m_Name: PlayerInventory
+  m_Script: {fileID: 11500000, guid: 48df1477fb7d2c74b8866634d4af22f1, type: 3}
+  m_Name: Cereza
   m_EditorClassIdentifier: 
-  Slots:
-  - Item: {fileID: 11400000, guid: 0b62c96e281c0984ca1fd15454874c4d, type: 2}
-    Amount: 1
-    Selected: 0
+  Name: 
+  ImageUI: {fileID: 0}
+  IsStackable: 0
+  Cost: 0
+  LifeRestore: 0

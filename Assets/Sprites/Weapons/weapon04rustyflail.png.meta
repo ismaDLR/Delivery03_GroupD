@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      weapon04rustyflail_0: 8046758240713750117
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

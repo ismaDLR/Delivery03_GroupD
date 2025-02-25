@@ -1,4 +1,4 @@
-## Delivery 03 - Carlos el ladron
+## Delivery 03 - Carlos el vendedor
 
 ![$(Carlos el vendedor)](Screenshots/screenshot01.png "$(Carlos el vendedor)")
 
@@ -19,7 +19,7 @@ This project is made by 4 students, the goal is to develop an RPG-style item sho
 
 ### Screenshots
 
-![$(Carlos el ladron)](Screenshots/screenshot02.png "$(Carlos el vendedor)")
+![$(Carlos el vendedor)](Screenshots/screenshot02.png "$(Carlos el vendedor)")
 
 ### Developers
 

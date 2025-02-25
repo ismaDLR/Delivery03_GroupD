@@ -12,6 +12,7 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public static Action<int> OnSell;
     public static Action<int> OnBuy;
+    public static Action<int> OnChangeHealth;
 
     public Image Image;
     public TextMeshProUGUI AmountText;
@@ -85,7 +86,12 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 {
                     if (transform.parent.gameObject.tag == "Player")
                     {
-
+                        if (_item is ConsumableItem)
+                        {
+                            ConsumableItem consumableItem = (_item as ConsumableItem);
+                            _inventory.Inventory.RemoveItem(_slot.Item);
+                            OnChangeHealth?.Invoke(consumableItem.LifeRestore);
+                        }
                     }
                 }
                 else

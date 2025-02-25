@@ -10,7 +10,7 @@ public class InputAction : MonoBehaviour
     {
         scene = SceneManager.GetActiveScene();
         //soundManager = FindAnyObjectByType<SoundManager>();
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
     }
 

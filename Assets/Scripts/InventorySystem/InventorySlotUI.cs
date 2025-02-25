@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,6 +9,9 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 {
     // NOTE: Inventory UI slots support drag&drop,
     // implementing the Unity provided interfaces by events system
+
+    public static Action<int> OnSell;
+    public static Action<int> OnBuy;
 
     public Image Image;
     public TextMeshProUGUI AmountText;
@@ -51,8 +55,38 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             {
                 if (hitData.collider.tag == "Sell" && _slot.Selected)
                 {
-                    _inventory.Inventory.RemoveItem(_slot.Item);
-                    Debug.Log(_slot.Item.Cost);
+                    if (transform.parent.gameObject.tag == "Player")
+                    {
+                        GameObject inventoryShop = GameObject.FindGameObjectWithTag("Shop");
+
+                        if (inventoryShop.GetComponentInChildren<ShopCoins>().GetCoins() - _slot.Item.Cost > 0)
+                        {
+                            _inventory.Inventory.RemoveItem(_slot.Item);
+                            inventoryShop.GetComponent<InventoryUI>().Inventory.AddItem(_slot.Item);
+                            OnSell?.Invoke(_slot.Item.Cost);
+                        }
+                    }
+                }
+                else if (hitData.collider.tag == "Buy" && _slot.Selected)
+                {
+                    if (transform.parent.gameObject.tag == "Shop")
+                    {
+                        GameObject inventoryPlayer = GameObject.FindGameObjectWithTag("Player");
+
+                        if (inventoryPlayer.GetComponentInChildren<PlayerCoins>().GetCoins() - _slot.Item.Cost > 0)
+                        {
+                            _inventory.Inventory.RemoveItem(_slot.Item);
+                            inventoryPlayer.GetComponent<InventoryUI>().Inventory.AddItem(_slot.Item);
+                            OnBuy?.Invoke(_slot.Item.Cost);
+                        }
+                    }
+                }
+                else if (hitData.collider.tag == "Use" && _slot.Selected)
+                {
+                    if (transform.parent.gameObject.tag == "Player")
+                    {
+
+                    }
                 }
                 else
                 {
@@ -104,6 +138,14 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (hitData)
         {
             Debug.Log("Drop over object: " + hitData.collider.gameObject.name);
+
+            if (hitData)
+            {
+                if (hitData.collider.gameObject.tag == "Shop")
+                {
+                    Debug.Log("aa");
+                }
+            }
             /*
             var consumer = hitData.collider.GetComponent<IConsume>();
             bool consumable = _item is ConsumableItem;

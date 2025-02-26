@@ -17,7 +17,6 @@ public class Localizer : MonoBehaviour
 
     private void Awake()
     {
-
         if (Instance != null)
         {
             Destroy(gameObject);

@@ -21,6 +21,7 @@ public class HealthBar : MonoBehaviour
     {
         rectHealth = Health.GetComponent<RectTransform>();
     }
+
     private void Update()
     {
         if (rectHealth.sizeDelta.x == 0)

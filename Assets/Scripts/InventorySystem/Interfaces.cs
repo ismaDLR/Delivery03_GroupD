@@ -1,6 +1,4 @@
-﻿// SOLID: Interfaces
-
-// Interface for items that can be picked
+﻿// Interface for items that can be picked
 public interface ICanBePicked
 {
     void PickedUp();

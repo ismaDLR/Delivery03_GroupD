@@ -21,7 +21,6 @@ public class LanguageButton : MonoBehaviour, IPointerClickHandler
 
         Localizer.SetLanguage(Language);
 
-        // Make sure button displays current language text
         _localizedText.text = Language.ToString();
         Localizer.SetLanguage(Localizer.GetLanguage());
     }

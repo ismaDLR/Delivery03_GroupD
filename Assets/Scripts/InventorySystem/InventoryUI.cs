@@ -42,7 +42,6 @@ public class InventoryUI : MonoBehaviour
 
     private void FillInventory(Inventory inventory)
     {
-        // Lazy initialization for objects list
         if (_shownObjects == null) _shownObjects = new List<GameObject>();
 
         if (_shownObjects.Count > 0) ClearInventory();

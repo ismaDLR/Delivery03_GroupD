@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -19,7 +18,6 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public Image Selected;
 
     private Canvas _canvas;
-    private GraphicRaycaster _raycaster;
     private Transform _parent;
     public ItemSlot _slot;
     private ItemBase _item;
@@ -100,7 +98,6 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                     _slot.UnSelectedItem();
                 }
             }
-            
         }
         else
         {
@@ -120,7 +117,6 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         if (!_canvas)
         {
             _canvas = GetComponentInParent<Canvas>();
-            _raycaster = _canvas.GetComponent<GraphicRaycaster>();
         }
         
         // Change parent of our item to the canvas
@@ -145,7 +141,6 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         {
             if (hitData[i])
             {
-                Debug.Log("Drop over object: " + hitData[i].collider.gameObject.name);
                 GameObject inventoryPlayer = GameObject.FindGameObjectWithTag("Player");
                 GameObject inventoryShop = GameObject.FindGameObjectWithTag("Shop");
 
@@ -169,16 +164,6 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                         OnBuy?.Invoke(_slot.Item.Cost);
                     }
                 }
-                /*
-                var consumer = hitData.collider.GetComponent<IConsume>();
-                bool consumable = _item is ConsumableItem;
-
-                if ((consumer != null) && consumable)
-                {
-                    (_item as ConsumableItem).Use(consumer);
-                    _inventory.UseItem(_item);
-                }
-                */
             }
         }
 

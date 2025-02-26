@@ -8,7 +8,6 @@ public class PlayerInventory : MonoBehaviour, IPickUp
 
     public void PickUp(ICanBePicked item)
     {
-        // Add picked up item to player inventory
         Inventory.AddItem(item.GetItem());
     }    
 }

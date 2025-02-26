@@ -4,6 +4,7 @@ using UnityEngine;
 public class ShopCoins : MonoBehaviour
 {
     private TMP_Text coinText;
+
     private void Start()
     {
         coinText = gameObject.GetComponent<TMP_Text>();

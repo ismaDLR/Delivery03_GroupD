@@ -17,7 +17,15 @@ public class Localizer : MonoBehaviour
 
     private void Awake()
     {
+
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         currentLanguage = DefaultLanguage;
 
         LoadLanguageSheet();
@@ -33,6 +41,11 @@ public class Localizer : MonoBehaviour
         Instance.currentLanguage = language;
 
         OnLanguageChange?.Invoke();
+    }
+
+    public static Language GetLanguage()
+    {
+        return Instance.currentLanguage;
     }
 
     void LoadLanguageSheet()

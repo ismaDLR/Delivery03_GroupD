@@ -10,7 +10,8 @@ public class LanguageButton : MonoBehaviour, IPointerClickHandler
     public void Start()
     {
         _localizedText = gameObject.GetComponentInChildren<Text>();
-        _localizedText.text = Language.ToString();
+        _localizedText.text = Localizer.GetLanguage().ToString();
+        Language = Localizer.GetLanguage();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -22,5 +23,6 @@ public class LanguageButton : MonoBehaviour, IPointerClickHandler
 
         // Make sure button displays current language text
         _localizedText.text = Language.ToString();
+        Localizer.SetLanguage(Localizer.GetLanguage());
     }
 }

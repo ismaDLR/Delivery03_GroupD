@@ -129,7 +129,8 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnDrag(PointerEventData eventData)
     {
         // Moving object around screen using mouse delta
-        transform.localPosition += new Vector3(eventData.delta.x, eventData.delta.y, 0);
+        Vector3 scaledDelta = eventData.delta / _canvas.scaleFactor;
+        transform.localPosition += new Vector3(scaledDelta.x, scaledDelta.y, 0);
     }
 
     public void OnEndDrag(PointerEventData eventData)

@@ -139,30 +139,39 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     public void OnEndDrag(PointerEventData eventData)
     {
         // Find scene objects colliding with mouse point on end dragging
-        RaycastHit2D hitData = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
+        RaycastHit2D[] hitData = Physics2D.GetRayIntersectionAll(Camera.main.ScreenPointToRay(Input.mousePosition));
 
-        if (hitData)
+        for (int i = 0; i < hitData.Length; i++)
         {
-            Debug.Log("Drop over object: " + hitData.collider.gameObject.name);
-
-            if (hitData)
+            if (hitData[i])
             {
-                if (hitData.collider.gameObject.tag == "Shop")
+                Debug.Log("Drop over object: " + hitData[i].collider.gameObject.name);
+
+                if (hitData[i].collider.gameObject.tag == "Shop" && _parent.gameObject != hitData[i].collider.gameObject)
                 {
-                    Debug.Log("aa");
+                    _parent = hitData[i].collider.gameObject.transform;
+                    OnSell?.Invoke(_slot.Item.Cost);
                 }
-            }
-            /*
-            var consumer = hitData.collider.GetComponent<IConsume>();
-            bool consumable = _item is ConsumableItem;
+                else if (hitData[i].collider.gameObject.tag == "Player" && _parent.gameObject != hitData[i].collider.gameObject)
+                {
+                    _parent = hitData[i].collider.gameObject.transform;
+                    OnBuy?.Invoke(_slot.Item.Cost);
+                }
+                /*
+                var consumer = hitData.collider.GetComponent<IConsume>();
+                bool consumable = _item is ConsumableItem;
 
-            if ((consumer != null) && consumable)
-            {
-                (_item as ConsumableItem).Use(consumer);
-                _inventory.UseItem(_item);
+                if ((consumer != null) && consumable)
+                {
+                    (_item as ConsumableItem).Use(consumer);
+                    _inventory.UseItem(_item);
+                }
+                */
             }
-            */
         }
+
+        Selected.gameObject.SetActive(false);
+        _slot.UnSelectedItem();
 
         // Changing parent back to slot
         transform.SetParent(_parent.transform);

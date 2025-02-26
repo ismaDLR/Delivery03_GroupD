@@ -60,7 +60,7 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                     {
                         GameObject inventoryShop = GameObject.FindGameObjectWithTag("Shop");
 
-                        if (inventoryShop.GetComponentInChildren<ShopCoins>().GetCoins() - _slot.Item.Cost > 0)
+                        if (inventoryShop.GetComponentInChildren<ShopCoins>().GetCoins() - _slot.Item.Cost >= 0)
                         {
                             _inventory.Inventory.RemoveItem(_slot.Item);
                             inventoryShop.GetComponent<InventoryUI>().Inventory.AddItem(_slot.Item);
@@ -74,7 +74,7 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                     {
                         GameObject inventoryPlayer = GameObject.FindGameObjectWithTag("Player");
 
-                        if (inventoryPlayer.GetComponentInChildren<PlayerCoins>().GetCoins() - _slot.Item.Cost > 0)
+                        if (inventoryPlayer.GetComponentInChildren<PlayerCoins>().GetCoins() - _slot.Item.Cost >= 0)
                         {
                             _inventory.Inventory.RemoveItem(_slot.Item);
                             inventoryPlayer.GetComponent<InventoryUI>().Inventory.AddItem(_slot.Item);
@@ -146,16 +146,28 @@ public class InventorySlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             if (hitData[i])
             {
                 Debug.Log("Drop over object: " + hitData[i].collider.gameObject.name);
+                GameObject inventoryPlayer = GameObject.FindGameObjectWithTag("Player");
+                GameObject inventoryShop = GameObject.FindGameObjectWithTag("Shop");
 
                 if (hitData[i].collider.gameObject.tag == "Shop" && _parent.gameObject != hitData[i].collider.gameObject)
                 {
-                    _parent = hitData[i].collider.gameObject.transform;
-                    OnSell?.Invoke(_slot.Item.Cost);
+                    if (inventoryShop.GetComponentInChildren<ShopCoins>().GetCoins() - _slot.Item.Cost >= 0)
+                    {
+                        _parent = hitData[i].collider.gameObject.transform;
+                        _inventory.Inventory.RemoveItem(_slot.Item);
+                        inventoryShop.GetComponent<InventoryUI>().Inventory.AddItem(_slot.Item);
+                        OnSell?.Invoke(_slot.Item.Cost);
+                    }
                 }
                 else if (hitData[i].collider.gameObject.tag == "Player" && _parent.gameObject != hitData[i].collider.gameObject)
                 {
-                    _parent = hitData[i].collider.gameObject.transform;
-                    OnBuy?.Invoke(_slot.Item.Cost);
+                    if (inventoryPlayer.GetComponentInChildren<PlayerCoins>().GetCoins() - _slot.Item.Cost >= 0)
+                    {
+                        _parent = hitData[i].collider.gameObject.transform;
+                        _inventory.Inventory.RemoveItem(_slot.Item);
+                        inventoryPlayer.GetComponent<InventoryUI>().Inventory.AddItem(_slot.Item);
+                        OnBuy?.Invoke(_slot.Item.Cost);
+                    }
                 }
                 /*
                 var consumer = hitData.collider.GetComponent<IConsume>();

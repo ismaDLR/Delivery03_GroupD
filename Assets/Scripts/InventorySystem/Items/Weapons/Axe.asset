@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f21b0ade0bafd4fb6992624a5ce350, type: 3}
+  m_Name: Axe
+  m_EditorClassIdentifier: 
+  Name: Hacha
+  ImageUI: {fileID: -5249292366331201437, guid: c417883e9fa4352449871e02a681dd16,
+    type: 3}
+  IsStackable: 0
+  Cost: 35

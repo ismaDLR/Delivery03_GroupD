@@ -13,9 +13,39 @@ MonoBehaviour:
   m_Name: StoreInventory
   m_EditorClassIdentifier: 
   Slots:
-  - Item: {fileID: 11400000, guid: 9bd8c3116df04f44382f2cf9a2c7c377, type: 2}
+  - Item: {fileID: 11400000, guid: ae0057d0aced6f6479e9d0cd72ab44ac, type: 2}
+    Amount: 1
+    Selected: 0
+  - Item: {fileID: 11400000, guid: 0638327784d73114da4363408dff97cb, type: 2}
+    Amount: 1
+    Selected: 0
+  - Item: {fileID: 11400000, guid: c07c916823438fd43af701d55f3dd538, type: 2}
     Amount: 1
     Selected: 0
   - Item: {fileID: 11400000, guid: a97334a0651ff894d94e8201daf7b7c5, type: 2}
     Amount: 1
+    Selected: 0
+  - Item: {fileID: 11400000, guid: fc8c362ae9f57c04f8de5fcf5fc17504, type: 2}
+    Amount: 1
+    Selected: 0
+  - Item: {fileID: 11400000, guid: 8fbc867fbe6f9df479cc4e1101bb914f, type: 2}
+    Amount: 5
+    Selected: 0
+  - Item: {fileID: 11400000, guid: 3946b746473ac9248a53d7011d29d324, type: 2}
+    Amount: 2
+    Selected: 0
+  - Item: {fileID: 11400000, guid: 514728b89ce9aca47bd39d6f6207af9d, type: 2}
+    Amount: 10
+    Selected: 0
+  - Item: {fileID: 11400000, guid: 0b62c96e281c0984ca1fd15454874c4d, type: 2}
+    Amount: 7
+    Selected: 0
+  - Item: {fileID: 11400000, guid: e31feb7343919cc468a0176fcc0fdd1e, type: 2}
+    Amount: 12
+    Selected: 0
+  - Item: {fileID: 11400000, guid: 9bd8c3116df04f44382f2cf9a2c7c377, type: 2}
+    Amount: 5
+    Selected: 0
+  - Item: {fileID: 11400000, guid: 0f4dc0b715e92e542a37aa1056fa44cc, type: 2}
+    Amount: 10
     Selected: 0

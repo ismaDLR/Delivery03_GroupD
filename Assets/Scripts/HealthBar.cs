@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthBar : MonoBehaviour
 {
@@ -20,6 +21,13 @@ public class HealthBar : MonoBehaviour
     {
         rectHealth = Health.GetComponent<RectTransform>();
     }
+    private void Update()
+    {
+        if (rectHealth.sizeDelta.x == 0)
+        {
+            SceneManager.LoadScene("Ending");
+        }
+    }
 
     public void OnClickHealth()
     {
@@ -30,13 +38,17 @@ public class HealthBar : MonoBehaviour
             if (hitData.collider.gameObject.tag == "Health")
             {
                 rectHealth.sizeDelta = new Vector2(rectHealth.sizeDelta.x - 0.05f, rectHealth.sizeDelta.y);
+
+                if (rectHealth.sizeDelta.x < 0)
+                {
+                    rectHealth.sizeDelta = new Vector2(0, rectHealth.sizeDelta.y);
+                }
             }
         }
     }
 
     public void RestoreHealth(int health)
     {
-        Debug.Log(health);
         rectHealth.sizeDelta = new Vector2(rectHealth.sizeDelta.x + ((float)health / 100), rectHealth.sizeDelta.y);
 
         if (rectHealth.sizeDelta.x > 1)
